@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: goose-migrations
+  namespace: shinko
+spec: 
+  template:
+    spec:
+      containers:
+      - name: goose
+        image: quay.io/joeavaik/shinko-db-migration:latest
+        env:
+        - name: DB_URL
+          value: "postgres://joeav:postgres@postgres:5432/shinko?sslmode=disable"
+        command: ["/bin/sh", "-c", "goose postgres $DB_URL up"]
+      restartPolicy: Never

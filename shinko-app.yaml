@@ -1,0 +1,8 @@
+apiVersion: app.shinko.io/v1alpha1
+kind: ShinkoApp
+metadata:
+  name: shinko-app
+  namespace: shinko-operator-system
+spec:
+  appImage: quay.io/joeavaik/shinko-app:latest
+  replicas: 1

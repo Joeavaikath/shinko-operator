@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shinko-app
+  namespace: shinko
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shinko-app
+  template:
+    metadata:
+      labels:
+        app: shinko-app
+    spec:
+      containers:
+      - name: shinko-app
+        image: quay.io/joeavaik/shinko-app:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_URL
+          value: "postgres://joeav:postgres@postgres:5432/shinko?sslmode=disable"
+        - name: JWT_SECRET
+          value: "FxsUyXOKhQLNWT+RTRBvT2jlCxRBSzVHb/CiOet3KO2tKLqIwlPBQDwklT4K0KCB7KzXPaBiokOh8v86X6QZeQ=="
+        - name: PLATFORM
+          value: "dev"
