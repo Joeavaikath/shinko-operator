@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "ea814086-9416-4a5a-9978-e28a61ffee5c",
+		"name": "shinko",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23224817"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Add user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"joeav@gmail.com\",\r\n    \"username\": \"WalterHite\",\r\n    \"password\": \"turkeydinner123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}/api/users",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzaGlua28iLCJzdWIiOiJkNDE2MjY4Zi01NTM1LTQwOTktYjhiOS00MjI4NjliZGIwZDAiLCJleHAiOjE3Mzg1MzIwODgsImlhdCI6MTczODUyODQ4OH0.uFAHGj589_Q60ESvKynRGwmgYLawyQrZwh2gZor9Y5k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOSTNAME}}/api/users/{{USER_ID }}/events",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{USER_ID }}",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Actions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzaGlua28iLCJzdWIiOiJkNDE2MjY4Zi01NTM1LTQwOTktYjhiOS00MjI4NjliZGIwZDAiLCJleHAiOjE3Mzg1MzIwODgsImlhdCI6MTczODUyODQ4OH0.uFAHGj589_Q60ESvKynRGwmgYLawyQrZwh2gZor9Y5k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOSTNAME}}/api/users/{{USER_ID }}/actions",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{USER_ID }}",
+								"actions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"joeav@gmail.com\",\r\n    \"password\": \"turkeydinner123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}/api/login",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0",
+								"name": "content-length",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjaGlycHkiLCJzdWIiOiJhYjg1YTRmNi0zNzRkLTQ1YzEtYWEwNy1kNzc2ZjY5NjEzZTkiLCJleHAiOjE3MzY2NTM5NDksImlhdCI6MTczNjY1MDM0OX0.B9zXoyBzl-OvhWH0yLY4BzCbLHPlVxXMlBI0vEh145Y",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/revoke",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"revoke"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "actions",
+			"item": [
+				{
+					"name": "Create Action",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzaGlua28iLCJzdWIiOiJkNDE2MjY4Zi01NTM1LTQwOTktYjhiOS00MjI4NjliZGIwZDAiLCJleHAiOjE3Mzg1MzIwODgsImlhdCI6MTczODUyODQ4OH0.uFAHGj589_Q60ESvKynRGwmgYLawyQrZwh2gZor9Y5k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"name": "content-type",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "<calculated when request is sent>",
+								"name": "content-length",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjaGlycHkiLCJzdWIiOiJhYjg1YTRmNi0zNzRkLTQ1YzEtYWEwNy1kNzc2ZjY5NjEzZTkiLCJleHAiOjE3MzY2NTM5NDksImlhdCI6MTczNjY1MDM0OX0.B9zXoyBzl-OvhWH0yLY4BzCbLHPlVxXMlBI0vEh145Y",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action_name\": \"Cut Nails\",\r\n    \"description\": \"Tracking when I have cut my fingernails\",\r\n    \"user_id\": \"333a80dc-f0ba-40e8-a681-673465e5d8a0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}/api/actions",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"path": [
+								"api",
+								"actions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "events",
+			"item": []
+		},
+		{
+			"name": "RESET ALL - CAREFUL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/reset",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/healthz",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOSTNAME}}/api/healthz",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"path": [
+						"api",
+						"healthz"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
