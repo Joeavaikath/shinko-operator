@@ -1,8 +1,9 @@
 # shinko-operator
-// TODO(user): Add simple overview of use/purpose
+Starts up the shinko app, as well as a shinko db running postgres.
+Ready to work! Just run it on your cluster, where it is exposed on localhost through minikube tunnel.
 
 ## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+Refer to https://github.com/Joeavaikath/Shinko for more information on what shinko is all about.
 
 ## Getting Started
 
