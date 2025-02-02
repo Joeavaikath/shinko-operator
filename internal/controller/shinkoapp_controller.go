@@ -210,7 +210,7 @@ func (r *ShinkoAppReconciler) ensureService(ctx context.Context, shinkoApp *v1al
 }
 
 func (r *ShinkoAppReconciler) checkAndUpdateImage(ctx context.Context, shinkoApp *v1alpha1.ShinkoApp) error {
-	latestImage, err := getLatestImageFromQuay("quay.io/repository/joeavaik/shinko-app")
+	latestImage, err := getLatestImageFromQuay("joeavaik/shinko-app")
 	if err != nil {
 		return err
 	}

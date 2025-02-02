@@ -3,6 +3,7 @@
 # It should be run by config/default
 resources:
 - bases/app.shinko.io_shinkoapps.yaml
+- bases/app.shinko.io_shinkodbs.yaml
 # +kubebuilder:scaffold:crdkustomizeresource
 
 patches:

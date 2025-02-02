@@ -17,4 +17,13 @@ resources:
   kind: ShinkoApp
   path: github.com/Joeavaikath/shinko-operator/api/v1alpha1
   version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: shinko.io
+  group: app
+  kind: ShinkoDB
+  path: github.com/Joeavaikath/shinko-operator/api/v1alpha1
+  version: v1alpha1
 version: "3"

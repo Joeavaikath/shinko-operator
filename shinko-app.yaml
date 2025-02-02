@@ -6,3 +6,4 @@ metadata:
 spec:
   appImage: quay.io/joeavaik/shinko-app:latest
   replicas: 1
+  autoUpdate: true
