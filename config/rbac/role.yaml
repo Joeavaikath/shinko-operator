@@ -20,6 +20,7 @@ rules:
   - app.shinko.io
   resources:
   - shinkoapps
+  - shinkodbs
   verbs:
   - create
   - delete
@@ -32,12 +33,14 @@ rules:
   - app.shinko.io
   resources:
   - shinkoapps/finalizers
+  - shinkodbs/finalizers
   verbs:
   - update
 - apiGroups:
   - app.shinko.io
   resources:
   - shinkoapps/status
+  - shinkodbs/status
   verbs:
   - get
   - patch
@@ -46,6 +49,8 @@ rules:
   - apps
   resources:
   - deployments
+  - statefulsets
+  - statefulsets/status
   verbs:
   - create
   - delete

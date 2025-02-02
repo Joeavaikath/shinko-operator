@@ -1,0 +1,7 @@
+apiVersion: app.shinko.io/v1alpha1
+kind: ShinkoDB
+metadata:
+  name: shinko-db
+  namespace: shinko-operator-system
+spec:
+  replicas: 1

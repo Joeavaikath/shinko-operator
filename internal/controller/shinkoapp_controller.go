@@ -62,6 +62,7 @@ type ShinkoAppReconciler struct {
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.19.4/pkg/reconcile
 func (r *ShinkoAppReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log := log.FromContext(ctx)
+	log.Info("Reconciling ShinkoApp", "name", req.Name, "namespace", req.Namespace)
 
 	// 1️⃣ Fetch the ShinkoApp instance
 	shinkoApp := &v1alpha1.ShinkoApp{}
@@ -110,6 +111,7 @@ func (r *ShinkoAppReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 }
 
 func (r *ShinkoAppReconciler) ensureDeployment(ctx context.Context, shinkoApp *v1alpha1.ShinkoApp) error {
+	log := log.FromContext(ctx)
 	deployment := &appsv1.Deployment{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      shinkoApp.Name,
@@ -132,6 +134,20 @@ func (r *ShinkoAppReconciler) ensureDeployment(ctx context.Context, shinkoApp *v
 							Image: shinkoApp.Spec.AppImage,
 							Ports: []corev1.ContainerPort{
 								{ContainerPort: 8080},
+							},
+							Env: []corev1.EnvVar{
+								{
+									Name:  "DB_URL",
+									Value: "postgres://joeav:postgres@shinko-db-service:5432/shinko?sslmode=disable",
+								},
+								{
+									Name:  "JWT_SECRET",
+									Value: "FxsUyXOKhQLNWT+RTRBvT2jlCxRBSzVHb/CiOet3KO2tKLqIwlPBQDwklT4K0KCB7KzXPaBiokOh8v86X6QZeQ==",
+								},
+								{
+									Name:  "PLATFORM",
+									Value: "dev",
+								},
 							},
 						},
 					},
@@ -159,6 +175,7 @@ func (r *ShinkoAppReconciler) ensureDeployment(ctx context.Context, shinkoApp *v
 	// Update Deployment if spec has changed
 	if !reflect.DeepEqual(deployment.Spec, found.Spec) {
 		found.Spec = deployment.Spec
+		log.Info("Deployment updated")
 		return r.Update(ctx, found)
 	}
 
@@ -166,6 +183,7 @@ func (r *ShinkoAppReconciler) ensureDeployment(ctx context.Context, shinkoApp *v
 }
 
 func (r *ShinkoAppReconciler) ensureService(ctx context.Context, shinkoApp *v1alpha1.ShinkoApp) error {
+	log := log.FromContext(ctx)
 	svc := &corev1.Service{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      shinkoApp.Name + "-service",
@@ -203,6 +221,7 @@ func (r *ShinkoAppReconciler) ensureService(ctx context.Context, shinkoApp *v1al
 	// Ensure the service spec is up-to-date
 	if !reflect.DeepEqual(svc.Spec, found.Spec) {
 		found.Spec = svc.Spec
+		log.Info("Service updated")
 		return r.Update(ctx, found)
 	}
 
@@ -210,7 +229,8 @@ func (r *ShinkoAppReconciler) ensureService(ctx context.Context, shinkoApp *v1al
 }
 
 func (r *ShinkoAppReconciler) checkAndUpdateImage(ctx context.Context, shinkoApp *v1alpha1.ShinkoApp) error {
-	latestImage, err := getLatestImageFromQuay("joeavaik/shinko-app")
+	log := log.FromContext(ctx)
+	latestImage, err := getLatestImageFromQuay("joeavaik/shinko-app") // todo: make this a spec field
 	if err != nil {
 		return err
 	}
@@ -230,6 +250,7 @@ func (r *ShinkoAppReconciler) checkAndUpdateImage(ctx context.Context, shinkoApp
 	// Update the deployment's container image
 	deployment.Spec.Template.Spec.Containers[0].Image = latestImage
 	err = r.Update(ctx, deployment)
+	log.Info("Image updated")
 	if err != nil {
 		return err
 	}

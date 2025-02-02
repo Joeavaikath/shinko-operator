@@ -29,13 +29,14 @@ type ShinkoDBSpec struct {
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of ShinkoDB. Edit shinkodb_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Replicas int32 `json:"replicas,omitempty"`
 }
 
 // ShinkoDBStatus defines the observed state of ShinkoDB.
 type ShinkoDBStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	AvailableReplicas string `json:"availableReplicas,omitempty"`
 }
 
 // +kubebuilder:object:root=true
