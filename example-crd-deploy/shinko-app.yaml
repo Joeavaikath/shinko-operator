@@ -4,6 +4,6 @@ metadata:
   name: shinko-app
   namespace: shinko-operator-system
 spec:
-  appImage: quay.io/joeavaik/shinko-app:latest
+  appImage: quay.io/joeavaik/shinko-app:v0.1.1
   replicas: 1
   autoUpdate: true
