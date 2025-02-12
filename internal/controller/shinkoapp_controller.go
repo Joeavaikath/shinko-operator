@@ -248,9 +248,11 @@ func (r *ShinkoAppReconciler) checkAndUpdateImage(ctx context.Context, shinkoApp
 	}
 
 	// Update the deployment's container image
+	// Update the current status in the CRD object
+	log.Info(fmt.Sprintf("Old image: %s", shinkoApp.Status.CurrentAppImage))
 	deployment.Spec.Template.Spec.Containers[0].Image = latestImage
 	err = r.Update(ctx, deployment)
-	log.Info("Image updated")
+	log.Info(fmt.Sprintf("Image updated. New image: %s", latestImage))
 	if err != nil {
 		return err
 	}
